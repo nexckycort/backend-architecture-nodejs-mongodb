@@ -1,36 +1,20 @@
-import { Application } from 'express'
 import colors from 'colors'
 
-import { pool } from 'loaders/pgPool'
-import mongooseLoader from 'loaders/mongoose'
 import expressLoader from 'loaders/express'
+import mongooseLoader from 'loaders/mongoose'
 import Logger from 'helpers/logger'
-
-interface PreLoaders {
-  expressApp: Application | undefined
-}
-
-interface Loaders {
-  expressApp: Application
-}
+import { Loaders, PreLoaders } from 'interfaces/server.interfaces'
 
 const loaders = async (): Promise<Loaders> => {
   Logger.info(colors.bold.italic.blue('Loading configuration... 💻'))
 
   const loaders: PreLoaders = {
-    expressApp: undefined
+    expressApp: undefined,
+    mongoConnection: undefined
   }
 
   try {
-    await pool.connect()
-    Logger.info(colors.bold.green('PostgreSQL loaded and connected! ✌️'))
-  } catch (error) {
-    Logger.error(colors.red('error loading or connecting PostgreSQL'), error)
-    throw error
-  }
-
-  try {
-    await mongooseLoader()
+    loaders.mongoConnection = await mongooseLoader()
     Logger.info(colors.bold.green('MongoDB loaded and connected! ✌️'))
   } catch (error) {
     Logger.error(colors.red('error loading or connecting MongoDB'), error)
