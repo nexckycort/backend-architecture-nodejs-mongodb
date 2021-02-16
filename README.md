@@ -1,4 +1,4 @@
-# Backend Architecture Nodejs
+# Backend Architecture Nodejs With MongoDB
 
 ## The folder structure 🏢
 
@@ -29,7 +29,7 @@
 
 ### Layer architecture
 
-![layer architecture](https://user-images.githubusercontent.com/50475272/107291078-9759fc80-6a35-11eb-8c7a-c0ca3e9c71ac.png)
+![layer architecture](https://user-images.githubusercontent.com/50475272/99424149-5be4e180-28cf-11eb-9ca0-a3a1e085e8d5.png)
 
 #### Raise the server, being at the root of the project
 
