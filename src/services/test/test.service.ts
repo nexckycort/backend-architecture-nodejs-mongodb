@@ -5,9 +5,9 @@ import Logger from 'helpers/logger'
 
 export default class TestService {
   private static instance: TestService
-  private readonly testModel
+  private readonly testModel!: TestModel
   private constructor() {
-    this.testModel = TestModel
+    this.testModel = TestModel.instance
   }
 
   public static getInstance(): TestService {
@@ -20,7 +20,7 @@ export default class TestService {
   test = async (test: number): Promise<string> => {
     try {
       const result = await this.testModel.create({ test })
-      await this.testModel.deleteOne({ _id: result._id })
+      this.testModel.deleteOne({ _id: result._id })
       const resp = `1 + ${test} es ${1 + result.test}`
       return resp
     } catch (error) {

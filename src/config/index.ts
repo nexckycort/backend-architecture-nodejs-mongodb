@@ -27,7 +27,10 @@ export const email = {
   password: process.env.EMAIL_PASSWORD ?? ''
 }
 
-export const mongodbUri = process.env.DATABASE_MONGO ?? ''
+export const mongo = {
+  uri: process.env.MONGO_URI ?? '',
+  dbName: process.env.MONGO_DATABASE ?? ''
+}
 
 export const corsUrl = process.env.CORS_URL ?? ''
 

@@ -1,7 +1,7 @@
 import colors from 'colors'
 
 import expressLoader from 'loaders/express'
-import mongooseLoader from 'loaders/mongoose'
+import mongoDBLoader from 'loaders/mongo'
 import Logger from 'helpers/logger'
 import { Loaders, PreLoaders } from 'interfaces/server.interfaces'
 
@@ -14,7 +14,8 @@ const loaders = async (): Promise<Loaders> => {
   }
 
   try {
-    loaders.mongoConnection = await mongooseLoader()
+    loaders.mongoConnection = await mongoDBLoader()
+    await loaders.mongoConnection.command({ ping: 1 })
     Logger.info(colors.bold.green('MongoDB loaded and connected! ✌️'))
   } catch (error) {
     Logger.error(colors.red('error loading or connecting MongoDB'), error)
